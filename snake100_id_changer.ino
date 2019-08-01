@@ -6,6 +6,21 @@
 #define PRESENT_ID_INDEX(i) (i * 2)
 #define NEW_ID_INDEX(i) (i * 2 + 1)
 
+// Dynamixel 通信に関するマクロ
+#define DXL_BUS_SERIAL1 1 //Dynamixel on Serial1(USART1)  <-OpenCM9.04
+#define DXL_BUS_SERIAL2 2 //Dynamixel on Serial2(USART2)  <-LN101,BT210
+#define DXL_BUS_SERIAL3 3 //Dynamixel on Serial3(USART3)  <-OpenCM 485EXP
+#define BaudRate 3
+
+// Dynamixel LEDの色に関するマクロ
+#define ledred 1
+#define ledgreen 2
+#define ledblue 4
+#define ledcyan (ledgreen | ledblue)
+#define ledmagenta (ledblue | ledred)
+#define ledyellow (ledred | ledgreen)
+#define ledwhite (ledred | ledgreen | ledblue)
+
 int id_table[ID_TABLE_SIZE] = {
   1, 10,
   2, 20,
