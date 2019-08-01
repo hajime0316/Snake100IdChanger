@@ -36,6 +36,14 @@ int id_table[ID_TABLE_SIZE] = {
 
 void setup() {
   // put your setup code here, to run once:
+  
+  // Dynamixelの初期化
+  Dynamixel Dxl(DXL_BUS_SERIAL1);
+  //XL-320の初期化をちょっと待つ
+  delay(1000);
+  Dxl.begin(3);
+  delay(500); // このdelayがないと，100以上のIDを持つDxl
+              // が動かない！
 
   // すべてのDynamixelに一時IDを設定(ID変更時にIDが被らないようにするため)
   for (int i = 0; i < DYNAMIXEL_NUM; i++)
