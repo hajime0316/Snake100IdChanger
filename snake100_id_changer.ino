@@ -62,6 +62,13 @@ void setup() {
   for(int i = 0; i < DYNAMIXEL_NUM; i++) {
     Dxl.setID(PRESENT_ID_INDEX(i), NEW_ID_INDEX(i));
   }
+  
+  // LEDを順番に点灯(順番通りに光らなかったら，なんか間違ってる)
+  for (int i = 0; i < DYNAMIXEL_NUM; i++)
+  {
+    Dxl.ledOn(NEW_ID_INDEX(i), ledblue);
+    delay(100);
+  }
 }
 
 void loop() {
