@@ -38,6 +38,9 @@ void setup() {
   delay(500); // このdelayがないと，100以上のIDを持つDxl
               // が動かない！
 
+  // キーボード入力待ち
+  SerialUSB.read();
+  
   // すべてのDynamixelに一時IDを設定(ID変更時にIDが被らないようにするため)
   for (int i = 0; i < DYNAMIXEL_NUM; i++)
   {
