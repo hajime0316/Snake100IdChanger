@@ -39,8 +39,8 @@ void setup() {
               // が動かない！
 
   // キーボード入力待ち
-  SerialUSB.read();
-  
+  while(SerialUSB.read() != 'g');
+
   // すべてのDynamixelに一時IDを設定(ID変更時にIDが被らないようにするため)
   for (int i = 0; i < DYNAMIXEL_NUM; i++)
   {
