@@ -58,7 +58,10 @@ void setup() {
     id_table[PRESENT_ID_INDEX(i)] = tmp_id;
   }
 
-
+  // 新しいIDの設定
+  for(int i = 0; i < DYNAMIXEL_NUM; i++) {
+    Dxl.setID(PRESENT_ID_INDEX(i), NEW_ID_INDEX(i));
+  }
 }
 
 void loop() {
