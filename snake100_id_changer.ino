@@ -53,20 +53,20 @@ void setup() {
     // 一時ID決定
     tmp_id = find_different_number(id_table, ID_TABLE_SIZE, 0, 254);
     // 一時ID送信
-    Dxl.setID(PRESENT_ID_INDEX(i), tmp_id);
+    Dxl.setID(id_table[PRESENT_ID_INDEX(i)], tmp_id);
     // IDテーブル更新
     id_table[PRESENT_ID_INDEX(i)] = tmp_id;
   }
 
   // 新しいIDの設定
   for(int i = 0; i < DYNAMIXEL_NUM; i++) {
-    Dxl.setID(PRESENT_ID_INDEX(i), NEW_ID_INDEX(i));
+    Dxl.setID(id_table[PRESENT_ID_INDEX(i)], id_table[NEW_ID_INDEX(i)]);
   }
   
   // LEDを順番に点灯(順番通りに光らなかったら，なんか間違ってる)
   for (int i = 0; i < DYNAMIXEL_NUM; i++)
   {
-    Dxl.ledOn(NEW_ID_INDEX(i), ledblue);
+    Dxl.ledOn(id_table[NEW_ID_INDEX(i)], ledblue);
     delay(100);
   }
 }
