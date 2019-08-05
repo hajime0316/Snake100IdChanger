@@ -1,7 +1,8 @@
 /* Minimum_Source*/
 #include "find_different_number.h"
+#include <stdio.h>
 
-#define DYNAMIXEL_NUM 10
+#define DYNAMIXEL_NUM 2
 #define ID_TABLE_SIZE (DYNAMIXEL_NUM * 2)
 #define PRESENT_ID_INDEX(i) (i * 2)
 #define NEW_ID_INDEX(i) (i * 2 + 1)
@@ -22,16 +23,8 @@
 #define ledwhite (ledred | ledgreen | ledblue)
 
 int id_table[ID_TABLE_SIZE] = {
-  105, 0,
-  5, 100,
-  104, 1,
-  4, 101,
-  103, 2,
-  3, 102,
-  102, 3,
-  2, 103,
-  101, 4,
-  1, 104,
+  1, 7,
+  101, 125
 };
 
 void setup() {
@@ -52,6 +45,8 @@ void setup() {
 
     // 一時ID決定
     tmp_id = find_different_number(id_table, ID_TABLE_SIZE, 0, 254);
+    
+    SerialUSB.println(tmp_id);
     // 一時ID送信
     Dxl.setID(PRESENT_ID_INDEX(i), tmp_id);
     // IDテーブル更新
