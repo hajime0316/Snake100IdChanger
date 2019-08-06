@@ -22,16 +22,16 @@
 #define ledwhite (ledred | ledgreen | ledblue)
 
 int id_table[ID_TABLE_SIZE] = {
-  1, 10,
-  2, 20,
-  3, 30,
-  4, 40,
-  5, 50,
-  6, 60,
-  7, 70,
-  8, 80,
-  9, 90,
-  0, 100,
+  41,   6,
+  141, 106,
+  42, 7,
+  142, 107,
+  43, 8,
+  143, 108,
+  44, 9,
+  144, 109,
+  45, 10,
+  145, 110,
 };
 
 void setup() {
@@ -45,6 +45,13 @@ void setup() {
   delay(500); // このdelayがないと，100以上のIDを持つDxl
               // が動かない！
 
+  // 最初にすべてのDynamixelを青色に点灯
+  for (int i = 0; i < DYNAMIXEL_NUM; i++)
+  {
+    Dxl.ledOn(id_table[PRESENT_ID_INDEX(i)], ledblue);
+    delay(100);
+  }
+
   // すべてのDynamixelに一時IDを設定(ID変更時にIDが被らないようにするため)
   for (int i = 0; i < DYNAMIXEL_NUM; i++)
   {
@@ -53,6 +60,7 @@ void setup() {
     // 一時ID決定
     tmp_id = find_different_number(id_table, ID_TABLE_SIZE, 0, 254);
     // 一時ID送信
+    Dxl.ledOn(id_table[PRESENT_ID_INDEX(i)], ledgreen);
     Dxl.setID(id_table[PRESENT_ID_INDEX(i)], tmp_id);
     // IDテーブル更新
     id_table[PRESENT_ID_INDEX(i)] = tmp_id;
